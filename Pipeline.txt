@@ -1,0 +1,20 @@
+# Netflix_Pipeline-Automation-
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                git 'https://github.com/satya1541/netflix-clone-for-docker.git'
+            }
+        }
+        stage('install') {
+            steps {
+                sh 'yum install httpd -y'
+                sh 'systemctl start httpd'
+                sh 'sudo mv * /var/www/html/'
+            }
+        }
+    }
+}
